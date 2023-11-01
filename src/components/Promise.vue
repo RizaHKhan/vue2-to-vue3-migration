@@ -1,7 +1,9 @@
 <template>
   <div>
     <Hourglass v-if="loading" />
-    <slot v-else />
+    <div v-else class="container">
+      <slot />
+    </div>
   </div>
 </template>
 
@@ -20,3 +22,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.container {
+  display: flex;
+  flex-direction: column;
+}
+</style>

@@ -1,11 +1,9 @@
 <template>
   <div id="app">
+    <h3>Your Tasks</h3>
     <Promise :loading="loading">
       <AddTask @add="handleAdd" />
-      <Tasks :tasks="tasks" @delete="handleDelete" />
-      <pre>
-        {{ tasks }}
-      </pre>
+      <Tasks :tasks="tasks" @delete="handleDelete" @complete="handleComplete" />
     </Promise>
   </div>
 </template>
@@ -48,6 +46,11 @@ export default {
     },
     handleAdd(title) {
       this.tasks.add(new Task({ title, completed: false }));
+    },
+    handleComplete(index) {
+      const task = this.tasks.collection[index];
+
+      task.complete();
     }
   }
 };
@@ -61,5 +64,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+h3 {
+  text-align: left;
 }
 </style>
