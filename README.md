@@ -1,27 +1,13 @@
 # upwork-vue2-to-vue3-transition
 
-> A Vue.js project
+## Vue 2 App
 
-## Build Setup
+Checkout branch `vue2`
+`npm install`
+`npm run dev`
 
-``` bash
-# install dependencies
-npm install
+## Vue 3 App
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+Checkout branch `vue3`
+`npm install`
+`npm run dev`
