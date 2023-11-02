@@ -2,15 +2,20 @@
 
 ## Vue 2 App
 
-Checkout branch `vue2`
-`npm install`
-`npm run dev`
-Runs on `localhost:8080`
+1. Checkout branch `vue2`
+
+2. `npm install`
+
+3. `npm run dev`
+
+4. Runs on `localhost:8080`
 
 ## Vue 3 App
 
-Checkout branch `vue3`
-`npm install`
-`npm run dev`
+1. Checkout branch `vue3`
 
-Runs on `localhost:5173`
+2. `npm install`
+
+3. `npm run dev`
+
+4. Runs on `localhost:5173`
