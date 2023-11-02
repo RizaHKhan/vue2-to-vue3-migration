@@ -1,5 +1,7 @@
+import { ITask } from '../types'
+
 class Api {
-  tasks() {
+  tasks(): Promise<ITask[]> {
     return new Promise(resolve => {
       setTimeout(() => {
         resolve([

@@ -8,52 +8,43 @@
   </div>
 </template>
 
-<script>
-import api from "@/services/api.js";
-import Collection from "./models/Collection.js";
+<script setup lang="ts">
+import { ref, Ref, onMounted } from 'vue'
+import { ITask, ICollection } from './types'
+import api from "./services/api";
+import Collection from "./models/Collection";
 import Task from "./models/Task.js";
-import Promise from "@/components/Promise.vue";
-import Tasks from "@/components/Tasks.vue";
+import Promise from "./components/Promise.vue";
+import Tasks from "./components/Tasks.vue";
 import AddTask from "./components/AddTask.vue";
 
-export default {
-  name: "App",
-  components: {
-    Promise,
-    Tasks,
-    AddTask
-  },
-  data() {
-    return {
-      loading: false,
-      tasks: new Collection()
-    };
-  },
-  async mounted() {
-    try {
-      this.loading = true;
-      const tasks = await api.tasks();
-      tasks.forEach(task => {
-        this.tasks.add(new Task(task));
-      });
-    } finally {
-      this.loading = false;
-    }
-  },
-  methods: {
-    handleDelete(index) {
-      this.tasks.delete(index);
-    },
-    handleAdd(title) {
-      this.tasks.add(new Task({ title, completed: false }));
-    },
-    handleComplete(index) {
-      const task = this.tasks.collection[index];
+const loading = ref(false)
+const tasks: Ref<ICollection<ITask>> = ref(new Collection())
 
-      task.complete();
+onMounted(async () => {
+    try {
+      loading.value = true;
+      const response = await api.tasks() as ITask[]
+      response.forEach(task => {
+        tasks.value.add(new Task(task));
+      })
+    } finally {
+      loading.value = false;
     }
-  }
-};
+})
+
+const handleDelete = (index: number) => {
+  tasks.value.delete(index);
+}
+
+const handleAdd = (title: string) => {
+  tasks.value.add(new Task({ title, completed: false }));
+}
+
+const handleComplete = (index: number) => {
+  const task: ITask = tasks.value.collection[index];
+  task.complete()
+}
 </script>
 
 <style>

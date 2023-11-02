@@ -23,21 +23,15 @@
   </div>
 </template>
 
-<script>
-import Button from "@/components/Button.vue";
+<script setup lang="ts">
+import { ICollection, ITask } from '../types'
+import Button from "./Button.vue";
 
-export default {
-  name: "Tasks",
-  components: {
-    Button
-  },
-  props: {
-    tasks: {
-      type: Object,
-      default: () => {}
-    }
-  }
-};
+interface IProps {
+  tasks: ICollection<ITask>
+}
+
+defineProps<IProps>()
 </script>
 
 <style scoped>
@@ -52,8 +46,7 @@ export default {
 @media only screen and (min-width: 500px) {
   .grid {
     grid-template-columns: 1fr 100px 0.5fr;
-    grid-template-areas:
-      "title status actions";
+    grid-template-areas: "title status actions";
   }
 }
 

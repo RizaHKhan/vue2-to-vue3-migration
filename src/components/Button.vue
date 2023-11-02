@@ -6,21 +6,19 @@
       info: variant === 'info'
     }"
     type="button"
-    @click="$emit('click')"
   >
     <slot />
   </button>
 </template>
 
-<script>
-export default {
-  props: {
-    variant: {
-      type: String,
-      default: "success"
-    }
-  }
-};
+<script setup lang="ts">
+interface IProps {
+  variant?: string
+}
+
+withDefaults(defineProps<IProps>(), {
+  variant: 'success'
+})
 </script>
 
 <style scoped>

@@ -7,26 +7,18 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
+import { ref } from 'vue'
 import Button from "./Button.vue";
 
-export default {
-  components: {
-    Button
-  },
-  data() {
-    return {
-      task: ""
-    };
-  },
-  methods: {
-    handleAdd() {
-      if (!this.task) return;
-      this.$emit("add", this.task);
-      this.task = "";
-    }
+const emit = defineEmits(['add'])
+const task = ref<string>('')
+
+  const handleAdd = () => {
+    if (!task.value) return
+    emit("add", task.value)
+    task.value = ""
   }
-};
 </script>
 
 <style scoped>

@@ -7,20 +7,14 @@
   </div>
 </template>
 
-<script>
-import Hourglass from "@/components/Hourglass.vue";
+<script setup lang="ts">
+import Hourglass from "./Hourglass.vue";
 
-export default {
-  components: {
-    Hourglass
-  },
-  props: {
-    loading: {
-      type: Boolean,
-      required: true
-    }
-  }
-};
+interface IProps {
+  loading: boolean
+}
+
+defineProps<IProps>()
 </script>
 
 <style scoped>
