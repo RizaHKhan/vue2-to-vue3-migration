@@ -9,31 +9,31 @@
 </template>
 
 <script>
-import api from "@/services/api.js";
-import Collection from "./models/Collection.js";
-import Task from "./models/Task.js";
-import Promise from "@/components/Promise.vue";
-import Tasks from "@/components/Tasks.vue";
-import AddTask from "./components/AddTask.vue";
+import api from '@/services/api.js';
+import Collection from './models/Collection.js';
+import Task from './models/Task.js';
+import Promise from '@/components/Promise.vue';
+import Tasks from '@/components/Tasks.vue';
+import AddTask from './components/AddTask.vue';
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     Promise,
     Tasks,
-    AddTask
+    AddTask,
   },
   data() {
     return {
       loading: false,
-      tasks: new Collection()
+      tasks: new Collection(),
     };
   },
   async mounted() {
     try {
       this.loading = true;
       const tasks = await api.tasks();
-      tasks.forEach(task => {
+      tasks.forEach((task) => {
         this.tasks.add(new Task(task));
       });
     } finally {
@@ -51,8 +51,8 @@ export default {
       const task = this.tasks.collection[index];
 
       task.complete();
-    }
-  }
+    },
+  },
 };
 </script>
 
