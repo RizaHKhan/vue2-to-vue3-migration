@@ -19,7 +19,7 @@ import Tasks from "./components/Tasks.vue";
 import AddTask from "./components/AddTask.vue";
 
 const loading = ref(false)
-const tasks: Ref<ICollection<ITask>> = ref(new Collection())
+const tasks: Ref<ICollection<ITask>> = ref(new Collection<ITask>())
 
 onMounted(async () => {
     try {
@@ -38,7 +38,7 @@ const handleDelete = (index: number) => {
 }
 
 const handleAdd = (title: string) => {
-  tasks.value.add(new Task({ title, completed: false }));
+  tasks.value.add(new Task({ title, completed: false} as ITask));
 }
 
 const handleComplete = (index: number) => {

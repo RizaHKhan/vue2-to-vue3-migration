@@ -1,23 +1,17 @@
 <template>
   <div>
-    <div
-      class="grid"
-      v-for="({ title, completed }, index) in tasks.collection"
-      :key="index"
-    >
+    <div class="grid" v-for="(task, index) in tasks.collection" :key="index">
       <div class="col title">
         <p>
-          {{ title }}
+          {{ task.title }}
         </p>
       </div>
       <div class="col statuses">
-        <div class="status" :class="{ completed: completed }"></div>
+        <div class="status" :class="{ completed: task.completed }"></div>
       </div>
       <div class="col actions">
-        <Button variant="danger" @click="$emit('delete', index)">Delete</Button>
-        <Button variant="success" @click="$emit('complete', index)"
-          >Complete</Button
-        >
+        <Button variant="danger" @click="tasks.delete(index)">Delete</Button>
+        <Button variant="success" @click="task.complete()">Complete</Button>
       </div>
     </div>
   </div>
